@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
-import List from './components/List.jsx';
+import homeEventList from './components/homeEventList.jsx';
 
-class App extends React.Component {
+class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -13,13 +13,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/user', {
-      params: {
-        name: 'Kenneth'
-      }
-    })
+    axios.get('/user?name=Kenneth')
     .then(function (response) {
-      user = response;
+      console.log(response);
     })
     .catch(function (error) {
       console.log(error);
@@ -28,8 +24,9 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>{this.state.user}</h1>
+      <h1>UserPage</h1>
       <List items={this.state.user}/>
+      {/* <button></button> */}
     </div>)
   }
 }

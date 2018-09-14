@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../client/dist'));
 
 //ADD USER
-app.post('signup', (req, res) => {
+app.post('/signup', (req, res) => {
   db.getUserByName([USERNAME], (user) => {
     if (user) {
       res.send('There is already a user with that name');
@@ -81,13 +81,10 @@ app.post('/message', (req, res) => {
 
 //GET ALL INFO FOR ONE USER
 app.get('/user', (req, res) => {
-  db.getUserByName([USERNAME], (err, user) => {
-    if (err) {
-      console.log(err)
-    } else {
+  let name = req.query.name;
+  db.getUserByName(name, (user) => {
       console.log('User Found')
       res.send(user);
-    }
   })
 })
 
