@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://user:access1@ds151612.mlab.com:51612/fit-together');
 
 var db = mongoose.connection;
 
@@ -176,6 +176,7 @@ const getUserByName = function (userName, callback) {
     if (err) {
       console.log(err)
     } else {
+      // console.log(user);
       callback(user);
     }
   })
