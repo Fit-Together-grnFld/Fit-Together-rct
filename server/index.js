@@ -95,10 +95,7 @@ app.get('/login', (req, res) => {
   //     });
   //   }))
   db.getPasswordFromUser(name, (pass) => {
-    console.log(pass);
-    console.log(password)
        if(pass === password){
-        console.log(true);
         res.send(true);
       } else {
         res.send(false);
