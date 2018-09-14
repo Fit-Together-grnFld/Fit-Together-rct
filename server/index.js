@@ -75,23 +75,35 @@ app.get('/login', (req, res) => {
   let inputPassword;
   let name = req.query.name;
   let password = req.query.password;
-  bcrypt.hash(password, 10, function (err, hash) {
-    // Store hash in your password DB.
-    if (err) {
-      console.log(err);
-    } else {
-      inputPassword = hash;
-    }
+  console.log(name);
+  console.log(password);
+  // bcrypt.hash(password, 10, function (err, hash) {
+  //   // Store hash in your password DB.
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     inputPassword = hash;
+  //   }
+  // })
+  //   .then(db.getPasswordFromUser(name, (pass) => {
+  //     bcrypt.compare(pass, hash, function (err, res) {
+  //       if (err) {
+  //         console.log(err)
+  //       } else {
+  //         res.send(true);
+  //       }
+  //     });
+  //   }))
+  db.getPasswordFromUser(name, (pass) => {
+    console.log(pass);
+    console.log(password)
+       if(pass === password){
+        console.log(true);
+        res.send(true);
+      } else {
+        res.send(false);
+      }
   })
-    .then(db.getPasswordFromUser(name, (pass) => {
-      bcrypt.compare(pass, hash, function (err, res) {
-        if (err) {
-          console.log(err)
-        } else {
-          res.render([HOMEPAGE]);
-        }
-      });
-    }))
 })
 
 //SEND A MESSAGE
