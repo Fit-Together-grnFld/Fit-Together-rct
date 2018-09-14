@@ -22,7 +22,7 @@ app.post('signup', (req, res) => {
           res.send('User added to database');
         }
       });
-
+      
     }
   })
 })
