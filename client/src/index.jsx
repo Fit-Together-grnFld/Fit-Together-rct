@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import List from './components/List.jsx';
+import Login from './components/login.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class App extends React.Component {
     return (<div>
       <h1>{this.state.user}</h1>
       <List items={this.state.user}/>
+      <Login/>
     </div>)
   }
 }
