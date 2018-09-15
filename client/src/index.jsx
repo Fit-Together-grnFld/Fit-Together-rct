@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
-import List from './components/List.jsx';
+import UserHeader from './components/userHeader.jsx';
+import UserEventList from './components/userEventList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -130,8 +131,10 @@ class UserPage extends React.Component {
   render () {
      let thisUser = this.state.user
      return (<div>
-       <h1>Username: {thisUser[1]}</h1>
-       <p>Password: {thisUser[2]}</p>
+      
+      <UserHeader name={this.state.user[1]} image={this.state.user[3]}/>
+
+      <UserEventList user={thisUser} />       
      </div>)
   }
 }
