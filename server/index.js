@@ -9,26 +9,28 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 //ADD USER
 app.post('/signup', (req, res) => {
+  console.log(req.query)
   let name = req.query.name;
   let password = req.query.password;
-  let image = req.query.image;
+  let img = req.query.image;
   let phone = req.query.phone;
   let email = req.query.email;
   let zip = req.query.zip;
+  
   db.getUserByName(name, (user) => {
     if (user) {
       res.send('There is already a user with that name');
     } else {
-      bcrypt.hash(password, 10, function (err, hash) {
-        // Store hash in your password DB.
-        if (err) {
-          console.log(err);
-        } else {
-          db.addUser(name, hash, image, phone, email, zip)
+      // bcrypt.hash(password, 10, function (err, hash) {
+      //   // Store hash in your password DB.
+      //   if (err) {
+      //     console.log(err);
+      //   } else {
+          db.addUser(name, password, img, phone, email, zip)
           res.send('User added to database');
-        }
-      });
-
+      //   }
+      // });
+      
     }
   })
 })
