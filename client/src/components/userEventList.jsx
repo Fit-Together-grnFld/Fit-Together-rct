@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import ReactDOM from 'react-dom';
 import UserEventItem from './userEventItem.jsx';
+import MakeEvent from './makeEvent.jsx'
+
 class UserEventList extends React.Component {
   constructor(props){
     super(props);
@@ -10,6 +13,10 @@ class UserEventList extends React.Component {
     }
     this.componentDidMount = this.componentDidMount.bind(this);
   } 
+
+  makeAnEvnt (){
+    ReactDOM.render(<MakeEvent />, document.getElementById('app'))
+  }
   
   
   componentDidMount(){
@@ -35,7 +42,9 @@ class UserEventList extends React.Component {
   render() {
     
     return (
+      <div>
 
+      <button onClick={this.makeAnEvnt} type="button" className="btn btn-primary btn-lg btn-block">Make event</button>
   <table className="table">
 	  <thead>
 		  <tr>
@@ -44,7 +53,7 @@ class UserEventList extends React.Component {
 			  </th>
 					<th>
 						Event Name
- 				</th>
+ 				 </th>
   			<th>
 	  			City
 		  	</th>
@@ -52,15 +61,16 @@ class UserEventList extends React.Component {
 					Date
   			</th>
 			</tr>
- 		</thead>
+ 		 </thead>
 		<tbody>
     {this.state.games.map( el => {
       console.log(el);
       return <UserEventItem game={el} />
     })}
-	 		
+	 		   
   	</tbody>
   </table>
+    </div>
 
   )
 }

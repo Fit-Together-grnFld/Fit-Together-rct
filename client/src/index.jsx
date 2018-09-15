@@ -4,7 +4,11 @@ import $ from 'jquery';
 import axios from 'axios';
 import UserHeader from './components/userHeader.jsx';
 import UserEventList from './components/userEventList.jsx';
+<<<<<<< HEAD
+import Signup from './components/signup.jsx';
+=======
 import GameList from './components/gameList.jsx';
+>>>>>>> 2681d5ef051368f012e24bce9882a54d7f70c2bd
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +30,10 @@ class App extends React.Component {
     let user = this.state.user;
     // console.log(user);
     ReactDOM.render(<UserPage user={user} />, document.getElementById('app'));
+  }
+
+  gotoSignUp(){
+    ReactDOM.render(<Signup />, document.getElementById('app'));
   }
 
   changeUser(value){
@@ -98,6 +106,7 @@ class App extends React.Component {
       Username: <input onChange={this.onUsername.bind(this)}/>
       Password: <input onChange={this.onPassword.bind(this)}/>
       <button onClick={this.loginClick}>Log In</button>
+      <button onClick={this.gotoSignUp}>Sign-Up</button>
       <p>{this.state.username}, {this.state.password}</p>
     </div>)
   }
