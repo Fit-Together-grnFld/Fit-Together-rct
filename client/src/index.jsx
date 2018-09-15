@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import UserHeader from './components/userHeader.jsx';
 import UserEventList from './components/userEventList.jsx';
 =======
 import Signup from './components/signup.jsx';
 
 >>>>>>> e17a14ecd5e8f1e9a76a4cf406162eb32833fa37
+=======
+import List from './components/List.jsx';
+>>>>>>> parent of f9e8ced... lots of changes
 
 class App extends React.Component {
   constructor(props) {
@@ -142,10 +146,8 @@ class UserPage extends React.Component {
 <<<<<<< HEAD
      let thisUser = this.state.user
      return (<div>
-      
-      <UserHeader name={this.state.user[1]} image={this.state.user[3]}/>
-
-      <UserEventList user={thisUser} />       
+       <h1>Username: {thisUser[1]}</h1>
+       <p>Password: {thisUser[2]}</p>
      </div>)
 =======
       let thisUser = this.state.user

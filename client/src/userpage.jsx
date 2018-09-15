@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
+=======
+import $ from 'jquery';
+>>>>>>> parent of f9e8ced... lots of changes
 import axios from 'axios';
 // import homeEventList from './components/homeEventList.jsx';
 

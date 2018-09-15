@@ -21,6 +21,7 @@ app.post('/signup', (req, res) => {
     if (user) {
       res.send('There is already a user with that name');
     } else {
+<<<<<<< HEAD
       // bcrypt.hash(password, 10, function (err, hash) {
       //   // Store hash in your password DB.
       //   if (err) {
@@ -28,10 +29,19 @@ app.post('/signup', (req, res) => {
       //   } else {
 <<<<<<< HEAD
           db.addUser(name, password, image, phone, email, zip)
+=======
+      bcrypt.hash(password, 10, function (err, hash) {
+        // Store hash in your password DB.
+        if (err) {
+          console.log(err);
+        } else {
+          db.addUser(name, hash, image, phone, email, zip)
+>>>>>>> parent of f9e8ced... lots of changes
           res.send('User added to database');
         }
-      // });
+      });
 
+<<<<<<< HEAD
     // }
 =======
           db.addUser(name, password, img, phone, email, zip)
@@ -41,6 +51,9 @@ app.post('/signup', (req, res) => {
       
     }
 >>>>>>> e17a14ecd5e8f1e9a76a4cf406162eb32833fa37
+=======
+    }
+>>>>>>> parent of f9e8ced... lots of changes
   })
 })
 
@@ -49,7 +62,6 @@ app.post('/signup', (req, res) => {
 app.post('/createGame', (req, res) => {
   let gameName = req.query.gameName;
   let type = req.query.type;
-  let imageg = req.query.image;
   let description = req.query.description;
   let street = req.query.street;
   let city = req.query.city;
@@ -62,7 +74,7 @@ app.post('/createGame', (req, res) => {
     if (game) {
       res.send('There is already an event with that name')
     } else {
-      db.addGame(gameName, type, image, description, street, city, state, zip, creator, date, time);
+      db.addGame(gameName, type, description, street, city, state, zip, creator, date, time);
       res.send('Game saved to database')
     }
   })
@@ -135,21 +147,18 @@ app.get('/user', (req, res) => {
 //GET ALL INFO ON A GAME
 app.get('/game', (req, res) => {
   let name = req.query.gameName;
-  db.getGameByName(name, (game) => {
-
+  db.getGameByName(name, (err, game) => {
+    if (err) {
+      console.log(err)
+    } else {
       console.log('Game Found');
       res.send(game);
-    
+    }
   })
 })
 
-//
-
 //TEST incoming data
-app.post('/test', (req, res) => {
-  let url ='https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjrztjjyLvdAhVGSK0KHTfJBrkQjRx6BAgBEAU&url=http%3A%2F%2Fpowerlisting.wikia.com%2Fwiki%2FFile%3AOutside.jpg&psig=AOvVaw0xBNTfrhp8xVgHAZm0fpOB&ust=1537051379292459';
-  db.addGame('lifting', 'fitness', url, 'fun in the sun', '123 Elm', 'NO', 'LA', 70125, 'Kenneth', 13/03/2019, 1 );
-  db.addPlayerToGame('Kenneth', 'lifting');
+app.get('/test', (req, res) => {
   res.send('success!');
 })
 
