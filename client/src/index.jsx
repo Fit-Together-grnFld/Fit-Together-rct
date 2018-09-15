@@ -4,11 +4,8 @@ import $ from 'jquery';
 import axios from 'axios';
 import UserHeader from './components/userHeader.jsx';
 import UserEventList from './components/userEventList.jsx';
-<<<<<<< HEAD
-import Signup from './components/signup.jsx';
-=======
 import GameList from './components/gameList.jsx';
->>>>>>> 2681d5ef051368f012e24bce9882a54d7f70c2bd
+import Signup from './components/signup.jsx';
 
 class App extends React.Component {
   constructor(props) {
