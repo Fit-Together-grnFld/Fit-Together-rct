@@ -199,7 +199,7 @@ const getGamesForUser = function (userName, callback) {
 const getGameMessages = function (gameName, callback) {
   Message.find({ game: gameName }, (err, messages) => {
     if (err) {
-      console(err)
+      console.log(err)
     } else {
       callback(messages);
     }
@@ -208,9 +208,14 @@ const getGameMessages = function (gameName, callback) {
 
 //Get games by interest
 const getGameByInterest = function(type, callback){
-  Game.find({type: type}, (game)=>{
-    res.send('Game Found');
-    callback(game);
+  console.log(type);
+  Game.find({type: type}, (err, game)=>{
+    // console.log(game);
+    if(err){
+      console.log(err);
+    }else {
+      callback(game);
+    }
   })
 }
 

@@ -4,6 +4,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import UserHeader from './components/userHeader.jsx';
 import UserEventList from './components/userEventList.jsx';
+import GameList from './components/gameList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -134,7 +135,10 @@ class UserPage extends React.Component {
       
       <UserHeader name={this.state.user[1]} image={this.state.user[3]}/>
 
-      <UserEventList user={thisUser} />       
+      <UserEventList user={thisUser} /> 
+
+      <GameList />
+
      </div>)
   }
 }

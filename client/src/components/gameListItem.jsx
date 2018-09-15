@@ -2,7 +2,7 @@ import React from 'react';
 
 const GameListItem = (props) => (
   <div>
-    { props.item.description }
+    {props.game}
   </div>
 )
 

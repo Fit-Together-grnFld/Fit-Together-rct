@@ -25,7 +25,7 @@ class UserEventList extends React.Component {
         }
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.state.games.push(response);
       }).then(console.log(this.state.games))
       .catch((err) => {
