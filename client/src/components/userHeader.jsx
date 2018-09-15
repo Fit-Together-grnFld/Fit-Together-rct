@@ -1,12 +1,18 @@
 import React from 'react';
-import ListItem from './ListItem.jsx';
 
-const List = (props) => (
-  <div>
-    <h4> List Component </h4>
-    There are { props.items.length } items.
-    { props.items.map(item => <ListItem item={item}/>)}
-  </div>
+const UserHeader = (props) => (
+
+	<div class="row">
+		<div class="col-md-2">
+			<img alt="profile-pic" src={props.image} class="rounded" />
+		</div>
+		<div class="col-md-10">
+			<div class="page-header">
+				<h1>
+        {props.name}
+				</h1>
+			</div>
+		</div>
+	</div>
 )
-
-export default List;
+export default UserHeader;

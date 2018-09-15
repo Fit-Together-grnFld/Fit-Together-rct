@@ -23,6 +23,7 @@ const userSchema = mongoose.Schema({
 });
 const gameSchema = mongoose.Schema({
   name: String,
+  image: String,
   type: String,
   description: String,
   street: String,
@@ -49,16 +50,15 @@ const Message = mongoose.model('Message', messageSchema, 'messages');
 const User = mongoose.model('User', userSchema, 'users');
 
 // Create a user
-const addUser = function (username, password, img, phone, email, zip) {
+const addUser = function (username, password, imgPath, phoneNum, email, zip) {
   const newUser = new User({
     name: username,
     password: password,
-    img: img,
-    phone: phone,
+    img: imgPath,
+    phone: phoneNum,
     email: email,
     zip: zip,
   });
-  console.log(newUser);
   newUser.save((err) => {
     if (err) {
       return handleError(err);
@@ -71,7 +71,7 @@ const addUser = function (username, password, img, phone, email, zip) {
 // Create a game
 const addGame = function (name, type, description, street, city, state, zip, creator, date, time) {
   const newGame = new Game({
-    name, type, description, street, city, state, zip, creator, date, time,
+    name, type, image, description, street, city, state, zip, creator, date, time,
   });
   newGame.save((err) => {
     if (err) {
@@ -206,6 +206,13 @@ const getGameMessages = function (gameName, callback) {
   });
 }
 
+//Get games by interest
+const getGameByInterest = function(type, callback){
+  Game.find({type: type}, (game)=>{
+    res.send('Game Found');
+    callback(game);
+  })
+}
 
 module.exports.addUser = addUser;
 module.exports.addGame = addGame;
@@ -218,3 +225,4 @@ module.exports.getGameMessages = getGameMessages;
 module.exports.getUserByName = getUserByName;
 module.exports.getPlayerFromGame = getPlayerFromGame;
 module.exports.getPasswordFromUser = getPasswordFromUser;
+module.exports.getGameByInterest = getGameByInterest;
