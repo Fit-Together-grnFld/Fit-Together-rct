@@ -46,27 +46,31 @@ class Signup extends React.Component {
   render() {
     const { name, password, image, phone, email, zip} = this.state;
     return (
-        <form onSubmit={this.handleSubmit}>
-        <label htmlFor="username">Enter username</label>
+      <div className="col-form-label">
+      <h1>Sign-Up</h1>
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="username">Enter username: </label>
         <input name="name" type="text" value={name} onChange={this.onChange}/>
 
-        <label htmlFor="password">Enter your password</label>
+        <label htmlFor="password">Enter your password: </label>
         <input name="password" type="password" value={password} onChange={this.onChange}/>
 
-        <label htmlFor="image">upload image</label>
+        <label htmlFor="image">upload image: </label>
         <input name="image" type="file" value={image} onChange={this.onChange}/>
 
-        <label htmlFor="phone">Enter your phone-number</label>
+        <label htmlFor="phone">Enter your phone-number: </label>
         <input name="phone" type="text" value={phone} onChange={this.onChange}/>
 
-        <label htmlFor="email">Enter your email</label>
+        <label htmlFor="email">Enter your email: </label>
         <input name="email" type="email" value={email} onChange={this.onChange}/>
 
-        <label htmlFor="zip">Enter your zip-code</label>
+        <label htmlFor="zip">Enter your zip-code: </label>
         <input name="zip" type="text" value={zip} onChange={this.onChange}/>
 
         <button>Send data!</button>
+
       </form>
+    </div>
     );
   }
 }
