@@ -1,5 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import Select from 'react-select';
+import MultiSelect from 'multiselect.jsx'
+
+const options = [
+  { value: 'running', label: 'Running' },
+  { value: 'basketball', label: 'Basketball' },
+  { value: 'tennis', label: 'tennis' }
+];
 
 class MakeEvent extends React.Component {
   constructor() {
@@ -21,6 +29,7 @@ class MakeEvent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -28,7 +37,7 @@ class MakeEvent extends React.Component {
   handleSubmit(e) {
     e.preventDefault(e);
     console.log(e)
-    // get our form data out of state
+    // get our form data from state
     // const { name, password, image, phone, email, zip } = this.state;
     console.log(this.state);
 
@@ -54,15 +63,17 @@ class MakeEvent extends React.Component {
 
   render() {
     const { name, type, description, address, city, state, zip, creator, date, time } = this.state;
+    const { selectedOption } = this.state;
     return (
       <div className="col-form-label">
-        <h1>Sign-Up</h1>
+        <h1>Create event</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="eventName">Enter event-name: </label>
           <input name="name" type="text" value={name} onChange={this.onChange} />
 
-          <label htmlFor="eventType">Enter type of event: </label>
-          <input name="eventType" type="text" value={type} onChange={this.onChange} />
+          <label htmlFor="eventType">Select type of event: </label>
+            <MultiSelect />
+          {/* <input name="eventType" type="text" value={type} onChange={this.onChange} /> */}
 
           <label htmlFor="description">Enter event description: </label>
           <input name="description" type="text" value={description} onChange={this.onChange} />
