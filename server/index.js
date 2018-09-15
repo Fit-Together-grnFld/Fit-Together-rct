@@ -9,12 +9,14 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 //ADD USER
 app.post('/signup', (req, res) => {
+  console.log(req.query)
   let name = req.query.name;
   let password = req.query.password;
-  let image = req.query.image;
+  let img = req.query.image;
   let phone = req.query.phone;
   let email = req.query.email;
   let zip = req.query.zip;
+  
   db.getUserByName(name, (user) => {
     if (user) {
       res.send('There is already a user with that name');
@@ -24,12 +26,21 @@ app.post('/signup', (req, res) => {
       //   if (err) {
       //     console.log(err);
       //   } else {
+<<<<<<< HEAD
           db.addUser(name, password, image, phone, email, zip)
           res.send('User added to database');
         }
       // });
 
     // }
+=======
+          db.addUser(name, password, img, phone, email, zip)
+          res.send('User added to database');
+      //   }
+      // });
+      
+    }
+>>>>>>> e17a14ecd5e8f1e9a76a4cf406162eb32833fa37
   })
 })
 

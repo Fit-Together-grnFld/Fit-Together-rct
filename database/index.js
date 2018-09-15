@@ -50,15 +50,21 @@ const Message = mongoose.model('Message', messageSchema, 'messages');
 const User = mongoose.model('User', userSchema, 'users');
 
 // Create a user
-const addUser = function (username, password, imgPath, phoneNum, email, zip) {
+const addUser = function (username, password, img, phone, email, zip) {
   const newUser = new User({
     name: username,
     password: password,
+<<<<<<< HEAD
     img: imgPath,
     phone: phoneNum,
+=======
+    img: img,
+    phone: phone,
+>>>>>>> e17a14ecd5e8f1e9a76a4cf406162eb32833fa37
     email: email,
     zip: zip,
   });
+  console.log(newUser);
   newUser.save((err) => {
     if (err) {
       return handleError(err);

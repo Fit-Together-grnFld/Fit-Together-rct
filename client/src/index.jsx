@@ -2,8 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
+<<<<<<< HEAD
 import UserHeader from './components/userHeader.jsx';
 import UserEventList from './components/userEventList.jsx';
+=======
+import Signup from './components/signup.jsx';
+
+>>>>>>> e17a14ecd5e8f1e9a76a4cf406162eb32833fa37
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +30,9 @@ class App extends React.Component {
     let user = this.state.user;
     console.log(user);
     ReactDOM.render(<UserPage user={user} />, document.getElementById('app'));
+  }
+  gotoSignup() {
+    ReactDOM.render(<Signup />, document.getElementById('app'))
   }
 
   changeUser(value){
@@ -92,11 +100,13 @@ class App extends React.Component {
   }
   
   render () {
-    return (<div>
+    return (
+    <div>
       <h1>Login</h1>
       Username: <input onChange={this.onUsername.bind(this)}/>
       Password: <input onChange={this.onPassword.bind(this)}/>
       <button onClick={this.loginClick}>Log In</button>
+      <button onClick={this.gotoSignup}>Sign-Up</button>
       <p>{this.state.username}, {this.state.password}</p>
     </div>)
   }
@@ -129,6 +139,7 @@ class UserPage extends React.Component {
     });
   }
   render () {
+<<<<<<< HEAD
      let thisUser = this.state.user
      return (<div>
       
@@ -136,6 +147,13 @@ class UserPage extends React.Component {
 
       <UserEventList user={thisUser} />       
      </div>)
+=======
+      let thisUser = this.state.user
+      return (<div>
+        <h1>Username: {thisUser[1]}</h1>
+        <p>Password: {thisUser[2]}</p>
+      </div>)
+>>>>>>> e17a14ecd5e8f1e9a76a4cf406162eb32833fa37
   }
 }
 
