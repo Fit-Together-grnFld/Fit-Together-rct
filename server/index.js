@@ -132,7 +132,17 @@ app.get('/game', (req, res) => {
   })
 })
 
-//
+//Get game by interest
+app.get('/interest', (req, res)=>{
+  // console.log(req.query);
+  
+  let type=req.query.type;
+  // console.log(type)
+  db.getGameByInterest(type, (games)=>{
+    // console.log(games);
+    res.send(games);
+  })
+})
 
 //TEST incoming data
 app.post('/test', (req, res) => {

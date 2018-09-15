@@ -5,7 +5,7 @@ const UserEventItem = (props) => (
 
 <tr>
   <td>
-  <img alt="profile-pic" src={props.game.data.image} class="rounded" />
+  <img alt="profile-pic" src={props.game.data.image} className="rounded" />
   </td>
   <td>
     {props.game.data.name}

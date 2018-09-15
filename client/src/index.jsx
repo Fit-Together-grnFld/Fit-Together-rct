@@ -4,7 +4,11 @@ import $ from 'jquery';
 import axios from 'axios';
 import UserHeader from './components/userHeader.jsx';
 import UserEventList from './components/userEventList.jsx';
+<<<<<<< HEAD
 import Signup from './components/signup.jsx';
+=======
+import GameList from './components/gameList.jsx';
+>>>>>>> 2681d5ef051368f012e24bce9882a54d7f70c2bd
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +28,7 @@ class App extends React.Component {
 
   gotoHomepage() {
     let user = this.state.user;
-    console.log(user);
+    // console.log(user);
     ReactDOM.render(<UserPage user={user} />, document.getElementById('app'));
   }
 
@@ -59,7 +63,7 @@ class App extends React.Component {
       this.changeUser(response.data)
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
   }
 
@@ -78,12 +82,12 @@ class App extends React.Component {
     })
     .then(()=> {
       if(condition === true){
-        console.log('truth');
+        // console.log('truth');
         this.getUser();
       }
     })
     .catch((error) => {
-      console.log('error');
+      console.error('error');
     });
   }
   
@@ -131,7 +135,7 @@ class UserPage extends React.Component {
       this.changeUser(response.data)
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
   }
   render () {
@@ -140,7 +144,10 @@ class UserPage extends React.Component {
       
       <UserHeader name={this.state.user[1]} image={this.state.user[3]}/>
 
-      <UserEventList user={thisUser} />       
+      <UserEventList user={thisUser} /> 
+
+      <GameList />
+
      </div>)
   }
 }

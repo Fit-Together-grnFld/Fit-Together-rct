@@ -18,9 +18,7 @@ class UserEventList extends React.Component {
     ReactDOM.render(<MakeEvent />, document.getElementById('app'))
   }
   
-  shouldComponentUpdate(){
-    return this.state.games.length !== 0;
-  }
+  
   componentDidMount(){
     // axios.post('/test')
     // .then((response)=>{console.log(response)}).catch((err)=>{console.log('error')})
@@ -32,11 +30,11 @@ class UserEventList extends React.Component {
         }
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.state.games.push(response);
-      }).then(console.log(this.state.games))
+      })
       .catch((err) => {
-        console.log('error')
+        console.error('error')
       })
     });
   }
@@ -67,7 +65,7 @@ class UserEventList extends React.Component {
 		<tbody>
     {this.state.games.map( el => {
       console.log(el);
-      return <UserEventItem game={el}/>
+      return <UserEventItem game={el} />
     })}
 	 		   
   	</tbody>
