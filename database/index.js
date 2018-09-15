@@ -215,7 +215,7 @@ const getGameByInterest = function(type, callback){
     if(err){
       console.error(err);
     }else {
-      console.log(game);
+      // console.log(game);
       callback(game);
     }
   })

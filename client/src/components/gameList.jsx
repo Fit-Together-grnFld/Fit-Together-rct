@@ -10,6 +10,7 @@ class GameList extends React.Component {
       type: ''
     }
     // this.componentDidMount = this.componentDidMount.bind(this);
+   this.render = this.render.bind(this);
     this.onType = this.onType.bind(this);
     this.searchClick = this.searchClick.bind(this);
     this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
@@ -30,8 +31,10 @@ class GameList extends React.Component {
     .then((response)=>{
       // console.log(response.data);
       // console.log(Array.isArray(response.data));
-      this.setState({games: Object.values(response.data)})
-    })
+      let values = Object.values(response.data);
+      console.log(values[0]);
+      this.setState({games: values})
+    }).then(this.render())
     .catch((error)=>{
       console.error(error);
     })
@@ -67,7 +70,7 @@ class GameList extends React.Component {
 		</thead>
     <tbody>
     { this.state.games.map(el => {
-      return <GameListItem game={el.data} />
+      return <GameListItem game={el} />
     })}
     </tbody>
     </table>
