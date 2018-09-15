@@ -24,7 +24,7 @@ class App extends React.Component {
 
   gotoHomepage() {
     let user = this.state.user;
-    console.log(user);
+    // console.log(user);
     ReactDOM.render(<UserPage user={user} />, document.getElementById('app'));
   }
 
@@ -55,7 +55,7 @@ class App extends React.Component {
       this.changeUser(response.data)
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
   }
 
@@ -74,12 +74,12 @@ class App extends React.Component {
     })
     .then(()=> {
       if(condition === true){
-        console.log('truth');
+        // console.log('truth');
         this.getUser();
       }
     })
     .catch((error) => {
-      console.log('error');
+      console.error('error');
     });
   }
   
@@ -126,7 +126,7 @@ class UserPage extends React.Component {
       this.changeUser(response.data)
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
   }
   render () {

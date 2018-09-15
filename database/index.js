@@ -208,12 +208,14 @@ const getGameMessages = function (gameName, callback) {
 
 //Get games by interest
 const getGameByInterest = function(type, callback){
-  console.log(type);
+  // console.log('inside helper');
+  // console.log(type)
   Game.find({type: type}, (err, game)=>{
     // console.log(game);
     if(err){
-      console.log(err);
+      console.error(err);
     }else {
+      console.log(game);
       callback(game);
     }
   })

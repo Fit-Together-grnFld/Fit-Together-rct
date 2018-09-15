@@ -139,7 +139,7 @@ app.get('/interest', (req, res)=>{
   let type=req.query.type;
   // console.log(type)
   db.getGameByInterest(type, (games)=>{
-    console.log(games);
+    // console.log(games);
     res.send(games);
   })
 })
