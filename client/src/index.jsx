@@ -23,19 +23,8 @@ class App extends React.Component {
     this.onPassword = this.onPassword.bind(this);
   }
 
-  gotoHomepage() {
-    let user = this.state.user;
-    // console.log(user);
-    ReactDOM.render(<UserPage user={user} />, document.getElementById('app'));
-  }
-
   gotoSignUp(){
     ReactDOM.render(<Signup />, document.getElementById('app'));
-  }
-
-  changeUser(value){
-    let values = Object.values(value);
-    this.setState({user: values});
   }
 
   onUsername (e) {
@@ -57,7 +46,8 @@ class App extends React.Component {
       }
     })
     .then((response) => {
-      this.changeUser(response.data)
+      this.setState({user: response.data})
+      console.log(this.state.user);
     })
     .catch((error) => {
       console.error(error);
@@ -65,7 +55,6 @@ class App extends React.Component {
   }
 
   loginClick() {
-    let condition;
     axios.get('/login', {
       params: {
         name: this.state.username,
@@ -74,29 +63,15 @@ class App extends React.Component {
     })
     .then((response) => {
       if(response.data === true){
-        this.getUser();
-      }
-    })
-    .then(()=> {
-      if(condition === true){
-        // console.log('truth');
-        this.getUser();
+        document.cookie = `username=${this.state.username};password=${this.state.password};`
+        this.getUser(this.state.username);
       }
     })
     .catch((error) => {
       console.error('error');
     });
   }
-  
-  shouldComponentUpdate(){
-    return (this.state.user !== '');
-  }
 
-  componentDidUpdate(){
-    if(this.state.user !== '');
-    this.gotoHomepage();
-  }
-  
   render () {
     return (<div>
       <h1>Login</h1>
@@ -149,4 +124,18 @@ class UserPage extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+class GamePage extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+
+    }
+  }
+}
+
+if(this.state.user !== ''){
+  let user = this.state.user;
+  ReactDOM.render(<UserPage user={user} />, document.getElementById('app'));
+} else {
+  ReactDOM.render(<App />, document.getElementById('app'));
+}

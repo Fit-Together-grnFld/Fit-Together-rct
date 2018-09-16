@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import MultiSelect from 'multiselect.jsx'
+// import MultiSelect from 'multiselect.jsx'
 
 const options = [
   { value: 'running', label: 'Running' },
@@ -72,7 +72,7 @@ class MakeEvent extends React.Component {
           <input name="name" type="text" value={name} onChange={this.onChange} />
 
           <label htmlFor="eventType">Select type of event: </label>
-            <MultiSelect />
+            {/* <MultiSelect /> */}
           {/* <input name="eventType" type="text" value={type} onChange={this.onChange} /> */}
 
           <label htmlFor="description">Enter event description: </label>

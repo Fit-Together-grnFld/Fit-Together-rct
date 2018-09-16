@@ -32,9 +32,14 @@ class GameList extends React.Component {
       // console.log(response.data);
       // console.log(Array.isArray(response.data));
       let values = Object.values(response.data);
-      console.log(values[0]);
-      this.setState({games: values})
-    }).then(this.render())
+      // console.log(values);
+      if(values !== this.state.games[0]){
+        this.setState({games: values})
+        
+      }
+      
+      // console.log(this.state.games);
+    })
     .catch((error)=>{
       console.error(error);
     })
@@ -69,7 +74,11 @@ class GameList extends React.Component {
 			</tr>
 		</thead>
     <tbody>
-    { this.state.games.map(el => {
+      {/* <GameListItem game={this.state.games[0]} /> */}
+    {this.state.games.map(el => {
+      console.log('inside render function')
+      console.log(el)
+      
       return <GameListItem game={el} />
     })}
     </tbody>
