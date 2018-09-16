@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import MultiSelect from 'multiselect.jsx'
+import { MultiSelect } from './multiSelect.jsx'
 
 const options = [
   { value: 'running', label: 'Running' },
@@ -61,9 +61,15 @@ class MakeEvent extends React.Component {
       });
   }
 
+  ontypechange(){
+    this.setState({ type });
+    console.log(`Option selected:`, selectedOption);
+    
+  }
+
   render() {
-    const { name, type, description, address, city, state, zip, creator, date, time } = this.state;
-    const { selectedOption } = this.state;
+    const { name, description, address, city, state, zip, creator, date, time } = this.state;
+    
     return (
       <div className="col-form-label">
         <h1>Create event</h1>
@@ -72,7 +78,8 @@ class MakeEvent extends React.Component {
           <input name="name" type="text" value={name} onChange={this.onChange} />
 
           <label htmlFor="eventType">Select type of event: </label>
-            <MultiSelect />
+            <MultiSelect getType={thi}/>
+            
           {/* <input name="eventType" type="text" value={type} onChange={this.onChange} /> */}
 
           <label htmlFor="description">Enter event description: </label>
