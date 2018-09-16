@@ -17,10 +17,10 @@ class MultiSelect extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  // handleChange(selectedOption){
-  //   this.setState({ selectedOption });
-  //   console.log(`Option selected:`, selectedOption);
-  // }
+  handleChange(selectedOption){
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  }
 
   render() {
     const { selectedOption } = this.state;
@@ -28,7 +28,7 @@ class MultiSelect extends React.Component {
     return (
       <Select
         value={selectedOption}
-        onChange={this.props.ontypechange()}
+        onChange={this.handleChange}
         options={options}
       />
     );

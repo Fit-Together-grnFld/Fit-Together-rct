@@ -39,7 +39,7 @@ app.post('/signup', (req, res) => {
 
 //ADD GAME
 app.post('/createGame', (req, res) => {
-  console.log(req.body.params);
+  console.log(req)
   body = req.body.params
   let gameName = body.gameName;
   let type = body.type;
