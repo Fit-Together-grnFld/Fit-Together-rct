@@ -34,6 +34,7 @@ class App extends React.Component {
   }
 
   changeUser(value){
+    console.log(value)
     let values = Object.values(value);
     this.setState({user: values});
   }
@@ -57,6 +58,7 @@ class App extends React.Component {
       }
     })
     .then((response) => {
+      // console.log(response)
       this.changeUser(response.data)
     })
     .catch((error) => {
@@ -73,16 +75,18 @@ class App extends React.Component {
       }
     })
     .then((response) => {
+      console.log(response)
       if(response.data === true){
         this.getUser();
       }
     })
-    .then(()=> {
-      if(condition === true){
-        // console.log('truth');
-        this.getUser();
-      }
-    })
+    // .then(()=> {
+    //   console.log(condition)
+    //   if(condition === true){
+    //     // console.log('truth');
+    //     this.getUser();
+    //   }
+    // })
     .catch((error) => {
       console.error('error');
     });
