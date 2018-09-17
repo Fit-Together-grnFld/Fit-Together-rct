@@ -131,19 +131,24 @@ class UserPage extends React.Component {
     .catch((error) => {
       console.error(error);
     });
-    
+
+    axios.get('/allgames')
+    .then((response)=>{
+      this.setState({games: response.data})
+    })
+    .catch((error)=>{console.error(error)})
 
   }
   render () {
      let thisUser = this.state.user
-     console.log(this.state.user);
+     console.log(this.state.games);
      return (<div>
       
       <UserHeader name={thisUser.name} image={thisUser.image}/>
 
       <UserEventList user={thisUser} /> 
 
-      <GameList />
+      <GameList games={this.state.games} />
 
      </div>)
   }
