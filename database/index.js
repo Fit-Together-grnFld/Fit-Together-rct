@@ -69,9 +69,9 @@ const addUser = function (username, password, imgPath, phoneNum, email, zip) {
 };
 
 // Create a game
-const addGame = function (name, type, image, description, street, city, state, zip, creator, date, time) {
+const addGame = function (gameName, type, image,description, street, city, state, zip, creator, date, time) {
   const newGame = new Game({
-    name, type, image, description, street, city, state, zip, creator, date, time,
+    gameName, type, image, description, street, city, state, zip, creator, date, time,
   });
   newGame.save((err) => {
     if (err) {
@@ -105,6 +105,17 @@ const addInterestToPlayer = function (userName, interest) {
     }
   })
 };
+
+//Get all games
+const getGames=function(callback){
+  Game.find({}, (err, games)=>{
+    if(err){
+      console.error(err)
+    } else {
+      callback(games)
+    }
+  })
+}
 
 // User can express interest in a game
 const addPlayerToGame = function (userName, gameName) {
@@ -207,15 +218,15 @@ const getGameMessages = function (gameName, callback) {
 }
 
 //get games
-const getGames = function(callback){
-  Game.find({}, (err, games) => {
-    if (err){
-      console.error(err)
-    } else {
-      callback(games)
-    }
-  })
-}
+// const getGames = function(callback){
+//   Game.find({}, (err, games) => {
+//     if (err){
+//       console.error(err)
+//     } else {
+//       callback(games)
+//     }
+//   })
+// }
 
 //Get games by interest
 const getGameByInterest = function(type, callback){

@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from "react-select";
 
+<<<<<<< HEAD
 const options = [
   { value: 'running', label: 'Running' },
   { value: 'cycling', label: 'Cyling' },
@@ -31,6 +32,33 @@ class MultiSelect extends React.Component {
         onChange={this.handleChange}
         options={options}
       />
+=======
+class MultiSelect extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productIds: ['tennis', 'running', 'basketball', 'cycling'],
+      selectedValues: []
+    }
+  }
+
+  onChange(values) {
+    this.setState({
+      selectedValues: values
+    });
+  }
+
+  render() {
+    return (
+      <div>
+            <Select multi options={this.state.productIds.map(i => { return { label: i, value: i }; })}
+              onChange={this.onChange.bind(this)} value={this.state.selectedValues} />
+          <ul style={{ width: 300 }}>
+            {this.state.selectedValues.map(i => <li>{i.value}</li>)}
+          </ul>
+        
+      </div>
+>>>>>>> 44505b146cc0dd07e1c5fb33585c8e102adb8f9d
     );
   }
 }

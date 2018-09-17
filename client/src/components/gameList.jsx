@@ -3,65 +3,23 @@ import GameListItem from './gameListItem.jsx';
 import axios from 'axios';
 
 class GameList extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      games: [],
+      user: this.props.user,
       type: '',
-      dbGames: [],
-
+      userName: this.props.userName
+      
     }
-    this.componentDidMount = this.componentDidMount.bind(this);
-    // this.render = this.render.bind(this);
-    // this.onType = this.onType.bind(this);
-    // this.searchClick = this.searchClick.bind(this);
-    this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
+   this.render = this.render.bind(this);
+  
   }
-  
-  componentDidMount() {
-    axios.get('/games')
-      .then(response => {
-        // console.log(response)
-        // let values = response.data;
-  
-        this.setState({ dbGames: response.data })
-        // console.log(this.state)
-      })
-  }
-
-  // onType(e){
-  //    this.setState({
-  //      type: e.target.value
-  //    })
-  //  }
-  
-  //  searchClick(){
-  //   axios.get('/interest', {
-  //     params: {
-  //       type: this.state.type
-  //     }
-  //   })
-  //   .then((response)=>{
-  //     // console.log(response.data);
-  //     // console.log(Array.isArray(response.data));
-  //     let values = Object.values(response.data);
-  //     console.log(values[0]);
-  //     this.setState({games: values})
-  //   }).then(this.render())
-  //   .catch((error)=>{
-  //     console.error(error);
-  //   })
-  // }
-
-  shouldComponentUpdate(){
-    return this.state.games.length !== 0;
-  }
-  
   render() {
     
   return (
     <div>
-    <h2> Upcoming Events <small>{this.state.games}</small></h2>
+    <h2> Upcoming Events </h2>
     {/* <input onChange={this.onType.bind(this)} />
     <button onClick={this.searchClick}>Search</button> */}
     <table>
@@ -82,7 +40,13 @@ class GameList extends React.Component {
 			</tr>
 		</thead>
     <tbody>
-      <GameListItem games={this.state.dbGames} />
+      {/* <GameListItem game={this.state.games[0]} /> */}
+    {this.props.games.map(el => {
+      // console.log('inside render function')
+      // console.log(el)
+      
+      return <GameListItem user={this.state.user} name={el.name} image={el.image} desc={el.description} date={el.date} userName={this.state.userName}/>
+    })}
     </tbody>
     </table>
 </div>

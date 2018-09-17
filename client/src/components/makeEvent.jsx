@@ -1,22 +1,25 @@
 import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import ReactDOM from 'react-dom';
+import UserPage from './userPage.jsx';
+// import MultiSelect from 'multiselect.jsx'
 
 
 const options = [
   { value: 'running', label: 'Running' },
-  { value: 'cycling', label: 'Cyling' },
-  { value: 'tennis', label: 'Tennis' },
-  { value: 'basketball', label: 'Basketball' }
+  { value: 'basketball', label: 'Basketball' },
+  { value: 'tennis', label: 'tennis' }
 ];
 
 class MakeEvent extends React.Component {
-  constructor() {
+  constructor(props) {
 
-    super();
+    super(props);
     this.state = {
+      user: this.props.user,
       name: '',
-      type: null,
+      type: '',
       image: '',
       description: '',
       address: '',
@@ -29,8 +32,8 @@ class MakeEvent extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.ontypechange = this.ontypechange.bind(this);
   }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -38,14 +41,14 @@ class MakeEvent extends React.Component {
   handleSubmit(e) {
     e.preventDefault(e);
     console.log(e)
-    // get our form data out of state
+    // get our form data from state
     // const { name, password, image, phone, email, zip } = this.state;
     console.log(this.state);
 
     axios.post('/createGame', {
       params: {
-        name: this.state.name,
-        type: this.state.type.value,
+        gameName: this.state.name,
+        type: this.state.type,
         description: this.state.description,
         address: this.state.address,
         city: this.state.city,
@@ -53,28 +56,22 @@ class MakeEvent extends React.Component {
         zip: this.state.zip,
         creator: this.state.creator,
         date: this.state.date,
-        time: this.state.time,
-        
+        time: this.state.time
       }
     })
       .then((result) => {
         console.log(result)
+        ReactDOM.render(<UserPage user={this.state.user} />, document.getElementById('app'));
         //access the results here....
       });
   }
 
-  ontypechange(type){
-    this.setState({ type });
-    console.log(`Option selected:`, type);
-    
-  }
-
   render() {
-    const { name, description, type, address, city, state, zip, creator, date, time } = this.state;
-    
+    const { name, type, description, address, city, state, zip, creator, date, time } = this.state;
+    const { selectedOption } = this.state;
     return (
       <div className="col-form-label">
-        <h1>Sign-Up</h1>
+        <h1>Create event</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="eventName">Enter event-name: </label>
           <input name="name" type="text" value={name} onChange={this.onChange} />
