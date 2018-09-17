@@ -148,7 +148,7 @@ class UserPage extends React.Component {
 
       <UserEventList user={thisUser} /> 
 
-      <GameList games={this.state.games} />
+      <GameList userName={this.state.user.name} games={this.state.games} />
 
      </div>)
   }
@@ -158,10 +158,47 @@ class GamePage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-
+      userName: this.props.userName,
+      gameName: this.props.game,
+      game: ''
     }
+  this.joinGame = this.joinGame.bind(this)
+  }
+  componentDidMount(){
+    axios.get('/game', {
+      params: {
+        gameName: this.state.gameName 
+      }
+    })
+    .then((response)=>{this.setState({game: response.data})})
+    .catch((error)=>{console.error(error)})
+  }
+
+  joinGame(){
+    axios.post('/joinGame', {
+      params: {
+        name: this.state.userName,
+        game: this.state.gameName
+      }
+    })
+  }
+
+  render(){
+    return (
+      <div>
+      <img src={this.state.game.image}></img>
+      <h1>{this.state.game.name}</h1>
+      <h2>{this.state.game.creator}</h2>
+      <h2>{this.state.game.city}</h2>
+      <h2>{this.state.game.date}</h2>
+      <h2>{this.state.game.description}</h2>
+      <button onClick={this.joinGame}>Join Game</button>
+      </div>
+    )
   }
 }
 
 
   ReactDOM.render(<App />, document.getElementById('app'));
+
+  export default GamePage;

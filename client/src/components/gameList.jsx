@@ -3,11 +3,13 @@ import GameListItem from './gameListItem.jsx';
 import axios from 'axios';
 
 class GameList extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       // games: this.props.games,
-      type: ''
+      type: '',
+      userName: this.props.userName
+      
     }
     // this.componentDidMount = this.componentDidMount.bind(this);
    this.render = this.render.bind(this);
@@ -97,7 +99,7 @@ class GameList extends React.Component {
       // console.log('inside render function')
       // console.log(el)
       
-      return <GameListItem name={el.name} image={el.image} desc={el.description} date={el.date} />
+      return <GameListItem name={el.name} image={el.image} desc={el.description} date={el.date} userName={this.state.userName}/>
     })}
     </tbody>
     </table>
