@@ -69,7 +69,7 @@ const addUser = function (username, password, imgPath, phoneNum, email, zip) {
 };
 
 // Create a game
-const addGame = function (name, type, image, description, street, city, state, zip, creator, date, time) {
+const addGame = function (name, type, image,description, street, city, state, zip, creator, date, time) {
   const newGame = new Game({
     name, type, image, description, street, city, state, zip, creator, date, time,
   });
@@ -105,6 +105,17 @@ const addInterestToPlayer = function (userName, interest) {
     }
   })
 };
+
+//Get all games
+const getGames=function(callback){
+  Game.find({}, (err, games)=>{
+    if(err){
+      console.error(err)
+    } else {
+      callback(games)
+    }
+  })
+}
 
 // User can express interest in a game
 const addPlayerToGame = function (userName, gameName) {
@@ -233,3 +244,4 @@ module.exports.getUserByName = getUserByName;
 module.exports.getPlayerFromGame = getPlayerFromGame;
 module.exports.getPasswordFromUser = getPasswordFromUser;
 module.exports.getGameByInterest = getGameByInterest;
+module.exports.getGames = getGames;

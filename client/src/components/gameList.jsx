@@ -13,7 +13,7 @@ class GameList extends React.Component {
    this.render = this.render.bind(this);
     this.onType = this.onType.bind(this);
     this.searchClick = this.searchClick.bind(this);
-    this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
+    // this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
   }
   
   onType(e){
@@ -45,8 +45,26 @@ class GameList extends React.Component {
     })
   }
 
-  shouldComponentUpdate(){
-    return this.state.games.length !== 0;
+  componentDidMount(){
+    let apple = this;
+    let promise = new Promise(function(resolve, reject){
+      axios.get('/allgames')
+    }).then((response)=>{
+      let array = response.data;
+      apple.setState({games: array})
+      setTimeout(()=>{
+        console.log(apple.state)
+        if ('u' === 'u') {
+          resolve("Stuff worked!");
+        }
+        else {
+          reject(Error("It broke"));
+        }
+      },1000)
+    })
+    promise.then(()=>{
+      apple.render(apple.state);
+    })
   }
   
   render() {
@@ -76,10 +94,10 @@ class GameList extends React.Component {
     <tbody>
       {/* <GameListItem game={this.state.games[0]} /> */}
     {this.state.games.map(el => {
-      console.log('inside render function')
-      console.log(el)
+      // console.log('inside render function')
+      // console.log(el)
       
-      return <GameListItem game={el} />
+      return <GameListItem name={el.name} image={el.image} desc={el.description} date={el.date} />
     })}
     </tbody>
     </table>

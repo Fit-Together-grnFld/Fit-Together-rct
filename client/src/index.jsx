@@ -15,8 +15,8 @@ class App extends React.Component {
       username: '',
       password: '',
     }
-    this.changeUser = this.changeUser.bind(this);
-    this.gotoHomepage = this.gotoHomepage.bind(this);
+    // this.changeUser = this.changeUser.bind(this);
+    // this.gotoHomepage = this.gotoHomepage.bind(this);
     this.loginClick = this.loginClick.bind(this);
     this.getUser = this.getUser.bind(this);
     this.onUsername = this.onUsername.bind(this);
@@ -27,15 +27,6 @@ class App extends React.Component {
     ReactDOM.render(<Signup />, document.getElementById('app'));
   }
 
-<<<<<<< HEAD
-=======
-  changeUser(value){
-    console.log(value)
-    let values = Object.values(value);
-    this.setState({user: values});
-  }
-
->>>>>>> 8e0a1a98c4c095ac421b6740cc13d14574b136c6
   onUsername (e) {
     this.setState({
       username: e.target.value
@@ -49,23 +40,37 @@ class App extends React.Component {
   }
 
   getUser() {
-    axios.get('/user', {
-      params: {
-        name: this.state.username
-      }
+    let uName = this.state.username;
+    let u = this.state.user;
+    let apple = this;
+    var promise = new Promise(function(resolve, reject) {
+      // do a thing, possibly async, then…
+      axios.get('/user', {
+        params: {
+          name: uName
+        }
+      }).then((response)=>{
+        apple.setState({user: response.data}, ()=>{console.log(apple.state)})
+      })
+      setTimeout(()=>{
+        console.log(apple.state.user)
+        if (u === u) {
+          resolve("Stuff worked!");
+        }
+        else {
+          reject(Error("It broke"));
+        }
+      },1000)
+      
     })
-    .then((response) => {
-<<<<<<< HEAD
-      this.setState({user: response.data})
-      console.log(this.state.user);
-=======
-      // console.log(response)
-      this.changeUser(response.data)
->>>>>>> 8e0a1a98c4c095ac421b6740cc13d14574b136c6
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+    promise.then(()=>{
+        
+        console.log(apple.state.user);
+        ReactDOM.render(<UserPage user={apple.state.user} />, document.getElementById('app'))
+      }) 
+
+   
+    
   }
 
   loginClick() {
@@ -76,27 +81,13 @@ class App extends React.Component {
       }
     })
     .then((response) => {
-      console.log(response)
       if(response.data === true){
-<<<<<<< HEAD
         document.cookie = `username=${this.state.username};password=${this.state.password};`
-        this.getUser(this.state.username);
-      }
-    })
-=======
         this.getUser();
       }
     })
-    // .then(()=> {
-    //   console.log(condition)
-    //   if(condition === true){
-    //     // console.log('truth');
-    //     this.getUser();
-    //   }
-    // })
->>>>>>> 8e0a1a98c4c095ac421b6740cc13d14574b136c6
     .catch((error) => {
-      console.error('error');
+      console.error(error);
     });
   }
 
@@ -116,7 +107,8 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      user: this.props.user
+      user: this.props.user,
+      games: []
     }
     this.changeUser = this.changeUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -126,23 +118,28 @@ class UserPage extends React.Component {
     this.setState({user: values});
   }
   componentDidMount() {
+    // console.log(this.state.user)
     axios.get('/user', {
       params: {
-        name: this.state.user[1]
+        name: this.state.user.name
       }
     })
     .then((response) => {
-      this.changeUser(response.data)
+      console.log(response);
+      this.setState({user: response.data})
     })
     .catch((error) => {
       console.error(error);
     });
+    
+
   }
   render () {
      let thisUser = this.state.user
+     console.log(this.state.user);
      return (<div>
       
-      <UserHeader name={this.state.user[1]} image={this.state.user[3]}/>
+      <UserHeader name={thisUser.name} image={thisUser.image}/>
 
       <UserEventList user={thisUser} /> 
 
@@ -161,9 +158,5 @@ class GamePage extends React.Component {
   }
 }
 
-if(this.state.user !== ''){
-  let user = this.state.user;
-  ReactDOM.render(<UserPage user={user} />, document.getElementById('app'));
-} else {
+
   ReactDOM.render(<App />, document.getElementById('app'));
-}

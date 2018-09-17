@@ -4,16 +4,16 @@ const GameListItem = (props) => (
   
 					<tr>
 						<td>
-							{/* {props.game.image} */}
+							{props.game.image}
 						</td>
 						<td>
-							{props.game.name}
+							{props.name}
 						</td>
 						<td>
-							{props.game.description}
+							{props.description}
 						</td>
 						<td>
-							{props.game.date}
+							{props.date}
 						</td>
 					</tr>
 				
