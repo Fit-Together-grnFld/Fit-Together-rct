@@ -21,10 +21,6 @@ class UserEventList extends React.Component {
   
   
   componentDidMount(){
-    // axios.post('/test')
-    // .then((response)=>{console.log(response)}).catch((err)=>{console.log('error')})
-    // console.log(this.state.user)
-    // console.log(this.state.user)
     this.state.user.events.forEach(game => {
       axios.get('/game', {
         params: {
@@ -38,6 +34,8 @@ class UserEventList extends React.Component {
       .catch((err) => {
         console.error('error')
       })
+
+
     });
   }
   

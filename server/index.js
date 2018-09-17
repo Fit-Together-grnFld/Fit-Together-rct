@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const db = require('../database');
 const app = express();
+const axios = require('axios')
+
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../client/dist'));
@@ -98,12 +101,53 @@ app.get('/login', (req, res) => {
   //     });
   //   }))
   db.getPasswordFromUser(name, (pass) => {
-       if(pass === password){
+      if(pass === password){
         res.send(true);
       } else {
         res.send(false);
       }
   })
+})
+
+app.get('/geoCode', (req,res) => {
+  // console.log(req.query)
+  const address = req.query
+  axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyDX4gzVV9HId5_JMTDLWr4XxvIZ2F9RKaw`, {
+  })
+    .then(function (response) {
+      let latitude = response.data.results[0].geometry.location.lat
+      let longitude = response.data.results[0].geometry.location.lng
+      res.send({latitude, longitude});
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });  
+})
+
+app.post('/image', (req, res) => {
+  console.log(req.body.longitude)
+
+  let longitude = req.body.longitude
+  let latitude = req.body.latitude
+  axios.get(`https://maps.googleapis.com/maps/api/streetview?size=600x300&location=${longitude},${latitude}&key=AIzaSyBo4hFFKUrEByZ5KO2TqiFHyj6uGDrFcxI`)
+    .then(function (response) {
+      let url = response.config.url
+      // console.log(response.config.url, 'picBB');
+      // console.log()
+      // handle success
+      
+      res.send(url);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
 })
 
 //SEND A MESSAGE
@@ -134,6 +178,12 @@ app.get('/game', (req, res) => {
   })
 })
 
+app.get('/games', (req, res) => {
+  db.getGames(games => {
+    res.send(games)
+  })
+})
+
 //Get game by interest
 app.get('/interest', (req, res)=>{
   // console.log(req.query);
@@ -155,12 +205,12 @@ app.get('/allgames', (req, res) => {
 })
 
 //TEST incoming data
-app.post('/test', (req, res) => {
-  let url ='https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjrztjjyLvdAhVGSK0KHTfJBrkQjRx6BAgBEAU&url=http%3A%2F%2Fpowerlisting.wikia.com%2Fwiki%2FFile%3AOutside.jpg&psig=AOvVaw0xBNTfrhp8xVgHAZm0fpOB&ust=1537051379292459';
-  db.addGame('lifting', 'fitness', url, 'fun in the sun', '123 Elm', 'NO', 'LA', 70125, 'Kenneth', 13/03/2019, 1 );
-  db.addPlayerToGame('Kenneth', 'lifting');
-  res.send('success!');
-})
+// app.post('/test', (req, res) => {
+//   let url ='https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjrztjjyLvdAhVGSK0KHTfJBrkQjRx6BAgBEAU&url=http%3A%2F%2Fpowerlisting.wikia.com%2Fwiki%2FFile%3AOutside.jpg&psig=AOvVaw0xBNTfrhp8xVgHAZm0fpOB&ust=1537051379292459';
+//   db.addGame('lifting', 'fitness', url, 'fun in the sun', '123 Elm', 'NO', 'LA', 70125, 'Kenneth', 13/03/2019, 1 );
+//   db.addPlayerToGame('Kenneth', 'lifting');
+//   res.send('success!');
+// })
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');

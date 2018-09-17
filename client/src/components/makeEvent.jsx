@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import UserPage from './userPage.jsx';
 // import MultiSelect from 'multiselect.jsx'
 
+
 const options = [
   { value: 'running', label: 'Running' },
   { value: 'basketball', label: 'Basketball' },
@@ -67,7 +68,7 @@ class MakeEvent extends React.Component {
 
   render() {
     const { name, type, description, address, city, state, zip, creator, date, time } = this.state;
-    const { selectedOption } = this.state;
+    // const { selectedOption } = this.state;
     return (
       <div className="col-form-label">
         <h1>Create event</h1>
@@ -77,7 +78,12 @@ class MakeEvent extends React.Component {
           <input name="name" type="text" value={name} onChange={this.onChange} />
 
           <label htmlFor="eventType">Select type of event: </label>
-            {/* <MultiSelect /> */}
+          <Select
+            value={type}
+            onChange={this.ontypechange}
+            options={options}
+          />
+            
           {/* <input name="eventType" type="text" value={type} onChange={this.onChange} /> */}
 
           <label htmlFor="description">Enter event description: </label>
