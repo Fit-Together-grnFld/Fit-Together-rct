@@ -43,7 +43,7 @@ class UserPage extends React.Component {
   }
   render () {
      let thisUser = this.state.user
-     console.log(this.state.games);
+     console.log(thisUser.image);
      return (<div>
       
       <UserHeader name={thisUser.name} image={thisUser.image}/>
