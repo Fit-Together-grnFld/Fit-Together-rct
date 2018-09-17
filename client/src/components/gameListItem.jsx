@@ -11,6 +11,7 @@ class GameListItem extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			user: this.props.user,
 			userName: this.props.userName,
 			image: this.props.image,
 			name: this.props.name,
@@ -32,7 +33,7 @@ class GameListItem extends React.Component {
   	// 	tArr.push(text[i]);
 		// }
 		// text = tArr.join('');
-		ReactDOM.render(<GamePage game={text} userName={this.state.userName}/>, document.getElementById('app'));
+		ReactDOM.render(<GamePage user={this.state.user} game={text} userName={this.state.userName}/>, document.getElementById('app'));
 	}
 
 	render(){

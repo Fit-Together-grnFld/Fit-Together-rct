@@ -50,7 +50,7 @@ class UserPage extends React.Component {
 
       <UserEventList user={thisUser} /> 
 
-      <GameList userName={this.state.user.name} games={this.state.games} />
+      <GameList user={this.state.user} userName={this.state.user.name} games={this.state.games} />
 
      </div>)
   }

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import ReactDOM from 'react-dom';
+import UserPage from './userPage.jsx';
 // import MultiSelect from 'multiselect.jsx'
 
 const options = [
@@ -10,10 +12,11 @@ const options = [
 ];
 
 class MakeEvent extends React.Component {
-  constructor() {
+  constructor(props) {
 
-    super();
+    super(props);
     this.state = {
+      user: this.props.user,
       name: '',
       type: '',
       image: '',
@@ -57,6 +60,7 @@ class MakeEvent extends React.Component {
     })
       .then((result) => {
         console.log(result)
+        ReactDOM.render(<UserPage user={this.state.user} />, document.getElementById('app'));
         //access the results here....
       });
   }
