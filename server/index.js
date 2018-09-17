@@ -44,7 +44,7 @@ app.post('/signup', (req, res) => {
 app.post('/createGame', (req, res) => {
   // console.log(req.body.params);
   body = req.body.params
-  let gameName = body.gameName;
+  let name = body.name;
   let type = body.type;
   let image = body.image;
   let description = body.description;
@@ -55,14 +55,11 @@ app.post('/createGame', (req, res) => {
   let creator = body.creator;
   let date = body.date;
   let time = body.time;
-  db.getGameByName(gameName, (game) => {
-    if (!game) {
-      res.send('There is already an event with that name')
-    } else {
-      db.addGame(gameName, type, image, description, street, city, state, zip, creator, date, time);
-      res.send('Game saved to database')
-    }
-  })
+  console.log(name)
+  db.addGame(name, type, image, description, street, city, state, zip, creator, date, time);
+  res.send('Game saved to database')
+  //   }
+  // })
 })
 
 //ADD PLAYER TO GAME

@@ -81,7 +81,7 @@ class Login extends React.Component {
     })
     .then((response) => {
       if(response.data === true){
-        document.cookie = `username=${this.state.username};password=${this.state.password};`
+        document.cookie = `${this.state.username}`;
         this.getUser();
       }
     })
