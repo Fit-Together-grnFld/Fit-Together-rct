@@ -119,6 +119,7 @@ const getGames=function(callback){
 
 // User can express interest in a game
 const addPlayerToGame = function (userName, gameName) {
+  console.log(userName);
   Game.updateOne({ name: gameName }, { $push: { players: userName } }, (err) => {
     if (err) {
       return handleError(err);
