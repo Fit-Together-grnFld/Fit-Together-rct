@@ -70,7 +70,7 @@ class GamePage extends React.Component {
     // outerPromise
     .then((response)=>{
       console.log(response)
-      ReactDOM.render(<UserPage user={this.state.user} username={apple.state.userName} />, document.getElementById('app'))
+      ReactDOM.render(<UserPage user={this.state.user} username={this.state.userName} />, document.getElementById('app'))
     })
   }
 
