@@ -68,10 +68,11 @@ class MakeEvent extends React.Component {
 
   render() {
     const { name, type, description, address, city, state, zip, creator, date, time } = this.state;
-    const { selectedOption } = this.state;
+    // const { selectedOption } = this.state;
     return (
       <div className="col-form-label">
         <h1>Create event</h1>
+        <p>{this.state.name}</p>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="eventName">Enter event-name: </label>
           <input name="name" type="text" value={name} onChange={this.onChange} />

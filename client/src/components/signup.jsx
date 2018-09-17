@@ -52,7 +52,7 @@ class Signup extends React.Component {
       }
     })
     promise.then(()=>{
-      ReactDOM.render(<Login userName={apple.state.name} password={this.state.password}/>, document.getElementById('app'));
+      ReactDOM.render(<Login userName={this.state.name} password={this.state.password}/>, document.getElementById('app'));
     })
       
   }
@@ -69,8 +69,8 @@ class Signup extends React.Component {
         <label htmlFor="password">Enter your password: </label>
         <input name="password" type="password" value={password} onChange={this.onChange}/>
 
-        <label htmlFor="image">upload image: </label>
-        <input name="image" type="file" value={image} onChange={this.onChange}/>
+        <label htmlFor="image">Image URL: </label>
+        <input name="image" type="text" value={image} onChange={this.onChange}/>
 
         <label htmlFor="phone">Enter your phone-number: </label>
         <input name="phone" type="text" value={phone} onChange={this.onChange}/>
