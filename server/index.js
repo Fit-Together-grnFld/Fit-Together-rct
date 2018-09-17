@@ -39,7 +39,7 @@ app.post('/signup', (req, res) => {
 
 //ADD GAME
 app.post('/createGame', (req, res) => {
-  console.log(req.body.params);
+  // console.log(req.body.params);
   body = req.body.params
   let gameName = body.gameName;
   let type = body.type;
@@ -64,17 +64,19 @@ app.post('/createGame', (req, res) => {
 
 //ADD PLAYER TO GAME
 app.post('/joinGame', (req, res) => {
-  let name = req.query.name;
-  let game = req.query.gameName;
-  console.log(req)
-  db.getPlayerFromGame(name, game, (player) => {
-    if (player) {
-      res.send('You are already signed up for this event')
-    } else {
+  // console.log(req)
+  let name = req.body.params.name;
+  let game = req.body.params.game;
+  // console.log(name)
+  // console.log(game)
+  // db.getPlayerFromGame(name, game, (player) => {
+  //   if (player) {
+  //     res.send('You are already signed up for this event')
+  //   } else {
       db.addPlayerToGame(name, gameName);
       res.send('You have expressed interest')
-    }
-  })
+  //   }
+  // })
 })
 
 //LOGIN

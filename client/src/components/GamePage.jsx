@@ -32,7 +32,7 @@ class GamePage extends React.Component {
   }
   joinGame(){
     console.log(this.state.userName)
-    let apple = this;
+    // let apple = this;
     // let innerPromise = new Promise(function(resolve, reject){
     //   axios.get('./user', {
     //     params: {
@@ -51,23 +51,25 @@ class GamePage extends React.Component {
     //   } 
 
     // })
-    let outerPromise = new Promise(function(resolve, reject){
+    // let outerPromise = new Promise(function(resolve, reject){
       axios.post('/joinGame', {
         params: {
-          name: apple.state.userName,
-          game: apple.state.gameName
+          name: this.state.userName,
+          game: this.state.gameName
         }
-      }).then(()=>{
-        setTimeout(()=>{console.log(apple.state)})
       })
-      if('u' === 'u'){
-        resolve('Yay')
-      } else {
-        reject('Boo Hoo')
-      }  
-    })
-    outerPromise.then(()=>{
-      console.log(apple.state)
+      // .then(()=>{
+      //   setTimeout(()=>{console.log(apple.state)})
+      // })
+    //   if('u' === 'u'){
+    //     resolve('Yay')
+    //   } else {
+    //     reject('Boo Hoo')
+    //   }  
+    // })
+    // outerPromise
+    .then((response)=>{
+      console.log(response)
       ReactDOM.render(<UserPage user={this.state.user} username={apple.state.userName} />, document.getElementById('app'))
     })
   }
