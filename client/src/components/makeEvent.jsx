@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Select from 'react-select';
+// import Select from 'react-select';
 
 const options = [
   { value: 'running', label: 'Running' },

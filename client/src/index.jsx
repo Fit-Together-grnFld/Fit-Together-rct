@@ -140,8 +140,8 @@ class UserPage extends React.Component {
     });
   }
   render () {
-     let thisUser = this.state.user
-     return (<div>
+      let thisUser = this.state.user
+      return (<div>
       
       <UserHeader name={this.state.user[1]} image={this.state.user[3]}/>
 
@@ -149,7 +149,7 @@ class UserPage extends React.Component {
 
       <GameList />
 
-     </div>)
+      </div>)
   }
 }
 

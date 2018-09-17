@@ -7,38 +7,51 @@ class GameList extends React.Component {
     super();
     this.state = {
       games: [],
-      type: ''
+      type: '',
+      dbGames: [],
+
     }
-    // this.componentDidMount = this.componentDidMount.bind(this);
-   this.render = this.render.bind(this);
-    this.onType = this.onType.bind(this);
-    this.searchClick = this.searchClick.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    // this.render = this.render.bind(this);
+    // this.onType = this.onType.bind(this);
+    // this.searchClick = this.searchClick.bind(this);
     this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
   }
   
-  onType(e){
-     this.setState({
-       type: e.target.value
-     })
-   }
+  componentDidMount() {
+    axios.get('/games')
+      .then(response => {
+        console.log(response)
+        // let values = response.data;
   
-   searchClick(){
-    axios.get('/interest', {
-      params: {
-        type: this.state.type
-      }
-    })
-    .then((response)=>{
-      // console.log(response.data);
-      // console.log(Array.isArray(response.data));
-      let values = Object.values(response.data);
-      console.log(values[0]);
-      this.setState({games: values})
-    }).then(this.render())
-    .catch((error)=>{
-      console.error(error);
-    })
+        this.setState({ dbGames: response.data })
+        console.log(this.state)
+      })
   }
+
+  // onType(e){
+  //    this.setState({
+  //      type: e.target.value
+  //    })
+  //  }
+  
+  //  searchClick(){
+  //   axios.get('/interest', {
+  //     params: {
+  //       type: this.state.type
+  //     }
+  //   })
+  //   .then((response)=>{
+  //     // console.log(response.data);
+  //     // console.log(Array.isArray(response.data));
+  //     let values = Object.values(response.data);
+  //     console.log(values[0]);
+  //     this.setState({games: values})
+  //   }).then(this.render())
+  //   .catch((error)=>{
+  //     console.error(error);
+  //   })
+  // }
 
   shouldComponentUpdate(){
     return this.state.games.length !== 0;
@@ -49,8 +62,8 @@ class GameList extends React.Component {
   return (
     <div>
     <h2> Upcoming Events <small>{this.state.games}</small></h2>
-    <input onChange={this.onType.bind(this)} />
-    <button onClick={this.searchClick}>Search</button>
+    {/* <input onChange={this.onType.bind(this)} />
+    <button onClick={this.searchClick}>Search</button> */}
     <table>
     <thead>
 			<tr>
@@ -69,9 +82,7 @@ class GameList extends React.Component {
 			</tr>
 		</thead>
     <tbody>
-    { this.state.games.map(el => {
-      return <GameListItem game={el} />
-    })}
+      <GameListItem games={this.state.dbGames} />
     </tbody>
     </table>
 </div>

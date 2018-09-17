@@ -206,6 +206,17 @@ const getGameMessages = function (gameName, callback) {
   });
 }
 
+//get games
+const getGames = function(callback){
+  Game.find({}, (err, games) => {
+    if (err){
+      console.error(err)
+    } else {
+      callback(games)
+    }
+  })
+}
+
 //Get games by interest
 const getGameByInterest = function(type, callback){
   // console.log('inside helper');
@@ -233,3 +244,4 @@ module.exports.getUserByName = getUserByName;
 module.exports.getPlayerFromGame = getPlayerFromGame;
 module.exports.getPasswordFromUser = getPasswordFromUser;
 module.exports.getGameByInterest = getGameByInterest;
+module.exports.getGames = getGames;

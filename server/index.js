@@ -137,6 +137,12 @@ app.get('/game', (req, res) => {
   })
 })
 
+app.get('/games', (req, res) => {
+  db.getGames(games => {
+    res.send(games)
+  })
+})
+
 //Get game by interest
 app.get('/interest', (req, res)=>{
   // console.log(req.query);
