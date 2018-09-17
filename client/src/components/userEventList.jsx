@@ -12,10 +12,11 @@ class UserEventList extends React.Component {
       games: []
     }
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.makeAnEvnt = this.makeAnEvnt.bind(this)
   } 
 
   makeAnEvnt (){
-    ReactDOM.render(<MakeEvent />, document.getElementById('app'))
+    ReactDOM.render(<MakeEvent user={this.state.user}/>, document.getElementById('app'))
   }
   
   
