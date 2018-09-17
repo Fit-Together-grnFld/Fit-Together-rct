@@ -23,7 +23,8 @@ class UserEventList extends React.Component {
     // axios.post('/test')
     // .then((response)=>{console.log(response)}).catch((err)=>{console.log('error')})
     // console.log(this.state.user)
-    this.state.user[7].forEach(game => {
+    // console.log(this.state.user)
+    this.state.user.events.forEach(game => {
       axios.get('/game', {
         params: {
           gameName: game
@@ -64,7 +65,7 @@ class UserEventList extends React.Component {
  		 </thead>
 		<tbody>
     {this.state.games.map( el => {
-      console.log(el);
+      // console.log(el);
       return <UserEventItem game={el} />
     })}
 	 		   

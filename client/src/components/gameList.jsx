@@ -13,7 +13,7 @@ class GameList extends React.Component {
    this.render = this.render.bind(this);
     this.onType = this.onType.bind(this);
     this.searchClick = this.searchClick.bind(this);
-    this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
+    // this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
   }
   
   onType(e){
@@ -32,16 +32,39 @@ class GameList extends React.Component {
       // console.log(response.data);
       // console.log(Array.isArray(response.data));
       let values = Object.values(response.data);
-      console.log(values[0]);
-      this.setState({games: values})
-    }).then(this.render())
+      // console.log(values);
+      if(values !== this.state.games[0]){
+        this.setState({games: values})
+        
+      }
+      
+      // console.log(this.state.games);
+    })
     .catch((error)=>{
       console.error(error);
     })
   }
 
-  shouldComponentUpdate(){
-    return this.state.games.length !== 0;
+  componentDidMount(){
+    let apple = this;
+    let promise = new Promise(function(resolve, reject){
+      axios.get('/allgames')
+    }).then((response)=>{
+      let array = response.data;
+      apple.setState({games: array})
+      setTimeout(()=>{
+        console.log(apple.state)
+        if ('u' === 'u') {
+          resolve("Stuff worked!");
+        }
+        else {
+          reject(Error("It broke"));
+        }
+      },1000)
+    })
+    promise.then(()=>{
+      apple.render(apple.state);
+    })
   }
   
   render() {
@@ -69,8 +92,12 @@ class GameList extends React.Component {
 			</tr>
 		</thead>
     <tbody>
-    { this.state.games.map(el => {
-      return <GameListItem game={el} />
+      {/* <GameListItem game={this.state.games[0]} /> */}
+    {this.state.games.map(el => {
+      // console.log('inside render function')
+      // console.log(el)
+      
+      return <GameListItem name={el.name} image={el.image} desc={el.description} date={el.date} />
     })}
     </tbody>
     </table>
