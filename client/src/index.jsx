@@ -12,8 +12,8 @@ class App extends React.Component {
     super(props);
     this.state = { 
       user: '',
-      username: '',
-      password: '',
+      username: this.props.username || '',
+      password: this.props.password || '',
     }
     // this.changeUser = this.changeUser.bind(this);
     // this.gotoHomepage = this.gotoHomepage.bind(this);
@@ -203,6 +203,7 @@ class GamePage extends React.Component {
 }
 
 
-  ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
 
+  export default UserPage;
   export default GamePage;
