@@ -4,7 +4,7 @@ import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 global.jQuery = $;
-import GamePage from '../index.jsx'
+import GamePage from './GamePage.jsx'
 import ReactDOM from 'react-dom';
 
 class GameListItem extends React.Component {
