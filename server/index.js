@@ -66,6 +66,7 @@ app.post('/createGame', (req, res) => {
 app.post('/joinGame', (req, res) => {
   let name = req.query.name;
   let game = req.query.gameName;
+  console.log(req)
   db.getPlayerFromGame(name, game, (player) => {
     if (player) {
       res.send('You are already signed up for this event')

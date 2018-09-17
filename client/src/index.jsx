@@ -175,11 +175,15 @@ class GamePage extends React.Component {
   }
 
   joinGame(){
+    console.log(this.state.userName)
     axios.post('/joinGame', {
       params: {
         name: this.state.userName,
         game: this.state.gameName
       }
+    }).then((response)=>{
+      console.log(response)
+      console.log('joined')
     })
   }
 
@@ -192,7 +196,7 @@ class GamePage extends React.Component {
       <h2>{this.state.game.city}</h2>
       <h2>{this.state.game.date}</h2>
       <h2>{this.state.game.description}</h2>
-      <button onClick={this.joinGame}>Join Game</button>
+      <button onClick={this.joinGame.bind(this)}>Join Game</button>
       </div>
     )
   }

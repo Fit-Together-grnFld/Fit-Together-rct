@@ -43,7 +43,7 @@ class MakeEvent extends React.Component {
 
     axios.post('/createGame', {
       params: {
-        name: this.state.name,
+        gameName: this.state.name,
         type: this.state.type,
         description: this.state.description,
         address: this.state.address,
