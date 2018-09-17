@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import ReactDOM from 'react-dom';
+import Login from './Login.jsx'
 
 class Signup extends React.Component {
-  constructor() {
+  constructor(props) {
 
-    super();
+    super(props);
     this.state = {
       name: '',
       password: '',
@@ -26,21 +28,33 @@ class Signup extends React.Component {
     // get our form data out of state
     // const { name, password, image, phone, email, zip } = this.state;
       console.log(this.state);
-
-    axios.post('/signup', { 
-      params: {
-        name: this.state.name,
-        password: this.state.password,
-        image: this.state.image,
-        phone: this.state.phone,
-        email: this.state.email,
-        zip: this.state.zip
-      }
-    }) 
+      let apple = this;
+    let promise = new Promise(function(resolve,reject){
+      axios.post('/signup', { 
+        params: {
+          name: apple.state.name,
+          password: apple.state.password,
+          image: apple.state.image,
+          phone: apple.state.phone,
+          email: apple.state.email,
+          zip: apple.state.zip
+        }
+      }) 
       .then((result) => {
-        console.log(result)
+        setTimeout(()=>{console.log(result)}, 500)
+        
         //access the results here....
-      });
+      })
+      if('u' === 'u'){
+        resolve(()=>{console.log('resolved')})
+      } else {
+        reject((error)=>{console.log('error')})
+      }
+    })
+    promise.then(()=>{
+      ReactDOM.render(<Login userName={apple.state.name} password={this.state.password}/>, document.getElementById('app'));
+    })
+      
   }
 
   render() {
