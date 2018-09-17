@@ -42,15 +42,15 @@ class MakeEvent extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault(e);
-    console.log(e)
+    
+    // console.log(e)
     // get our form data from state
     // const { name, password, image, phone, email, zip } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
 
     axios.post('/createGame', {
       params: {
-        gameName: this.state.name,
+        name: this.state.name,
         type: this.state.type,
         description: this.state.description,
         address: this.state.address,
@@ -67,6 +67,7 @@ class MakeEvent extends React.Component {
         ReactDOM.render(<UserPage user={this.state.user} />, document.getElementById('app'));
         //access the results here....
       });
+      // e.preventDefault(e);
   }
 
   ontypechange(type) {

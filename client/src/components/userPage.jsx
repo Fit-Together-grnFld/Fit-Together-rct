@@ -20,7 +20,7 @@ class UserPage extends React.Component {
     this.setState({user: values});
   }
   componentDidMount() {
-    // console.log(this.state.user)
+    console.log(document.cookie);
     axios.get('/user', {
       params: {
         name: this.state.user.name
@@ -43,7 +43,7 @@ class UserPage extends React.Component {
   }
   render () {
      let thisUser = this.state.user
-     console.log(thisUser.image);
+     console.log(thisUser);
      return (<div>
       
       <UserHeader name={thisUser.name} image={thisUser.image}/>
