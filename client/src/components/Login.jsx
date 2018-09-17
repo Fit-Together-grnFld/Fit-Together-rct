@@ -94,10 +94,10 @@ class Login extends React.Component {
     return (<div>
       <h1>Login</h1>
       Username: <input onChange={this.onUsername.bind(this)}/>
-      Password: <input onChange={this.onPassword.bind(this)}/>
+      Password: <input type='password' onChange={this.onPassword.bind(this)}/>
       <button onClick={this.loginClick}>Log In</button>
       <button onClick={this.gotoSignUp}>Sign-Up</button>
-      <p>{this.state.username}, {this.state.password}</p>
+      {/* <p>{this.state.username}, {this.state.password}</p> */}
     </div>)
   }
 }

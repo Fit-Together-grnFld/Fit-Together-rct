@@ -81,7 +81,7 @@ class MakeEvent extends React.Component {
     const { name, description, address, city, state, zip, creator, date, time } = this.state;
     const { type } = this.state;
     return (
-      <div className="col-form-label">
+      <div className="col-form-label" id="outer-wrapper">
         <h1>Create event</h1>
         <p>{this.state.name}</p>
         <form onSubmit={this.handleSubmit}>
