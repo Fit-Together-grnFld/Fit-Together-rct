@@ -54,10 +54,10 @@ class UserEventItem extends React.Component {
         latitude: lat
       }
     }).then( (image) => {
-      console.log(image);
+      // console.log(image);
       this.setState({ADDpic: image.data})
       // always executed
-      console.log(this.state)
+      // console.log(this.state)
     });
     // axios.post('/image', {
       
@@ -85,11 +85,11 @@ class UserEventItem extends React.Component {
       params: address
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           geoCode: response.data
         })
-        console.log(this.state)
+        // console.log(this.state)
         this.getImage(this.state.geoCode.latitude, this.state.geoCode.longitude)
       })
       .catch(function (error) {
@@ -123,7 +123,7 @@ class UserEventItem extends React.Component {
             {this.props.game.data.date}
           </td>
           <td>
-            {console.log(this.props)}
+            {/* {console.log(this.props)} */}
           </td>
         </tr>
       </div>
