@@ -71,7 +71,7 @@ const addUser = function (username, password, imgPath, phoneNum, email, zip) {
 // Create a game
 const addGame = function (gameName, type, image,description, street, city, state, zip, creator, date, time) {
   const newGame = new Game({
-    gameName, type, image, description, street, city, state, zip, creator, date, time,
+    name: gameName, type, image, description, street, city, state, zip, creator, date, time,
   });
   newGame.save((err) => {
     if (err) {
