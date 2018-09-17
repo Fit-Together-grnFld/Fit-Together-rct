@@ -9,7 +9,9 @@ import UserPage from './userPage.jsx';
 const options = [
   { value: 'running', label: 'Running' },
   { value: 'basketball', label: 'Basketball' },
-  { value: 'tennis', label: 'tennis' }
+  { value: 'tennis', label: 'Tennis' },
+  { value: 'soccer', label: 'Soccer' }
+  
 ];
 
 class MakeEvent extends React.Component {
@@ -19,7 +21,7 @@ class MakeEvent extends React.Component {
     this.state = {
       user: this.props.user,
       name: '',
-      type: '',
+      type: null,
       image: '',
       description: '',
       address: '',
@@ -32,6 +34,7 @@ class MakeEvent extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.ontypechange = this.ontypechange.bind(this);
   }
 
   onChange(e) {
@@ -66,9 +69,16 @@ class MakeEvent extends React.Component {
       });
   }
 
+  ontypechange(type) {
+    this.setState({ type }); this.setState({ type });
+    console.log(`Option selected:`, type); console.log(`Option selected:`, type);
+
+  }
+
+
   render() {
-    const { name, type, description, address, city, state, zip, creator, date, time } = this.state;
-    // const { selectedOption } = this.state;
+    const { name, description, address, city, state, zip, creator, date, time } = this.state;
+    const { type } = this.state;
     return (
       <div className="col-form-label">
         <h1>Create event</h1>
