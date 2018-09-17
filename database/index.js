@@ -119,6 +119,7 @@ const getGames=function(callback){
 
 // User can express interest in a game
 const addPlayerToGame = function (userName, gameName) {
+  console.log(userName);
   Game.updateOne({ name: gameName }, { $push: { players: userName } }, (err) => {
     if (err) {
       return handleError(err);
@@ -126,22 +127,22 @@ const addPlayerToGame = function (userName, gameName) {
       console.log('player added to game');
     }
   })
-    .then(User.updateOne({ name: userName }, { $push: { events: gameName } }, (err) => {
-      if (err) {
-        return handleError(err);
-      } else {
-        console.log('game added for player');
-      }
-    }))
-    .then(Game.findOne({ name: gameName }, (err, game) => {
-      if (err) {
-        return handleError(err);
-      } else {
-        let interest = game.type;
-        console.log(interest);
-        addInterestToPlayer(userName, interest);
-      }
-    }))
+  User.updateOne({ name: userName }, { $push: { events: gameName } }, (err) => {
+    if (err) {
+      return handleError(err);
+    } else {
+      console.log('game added for player');
+     }
+  })
+    // .then(Game.findOne({ name: gameName }, (err, game) => {
+    //   if (err) {
+    //     return handleError(err);
+    //   } else {
+    //     let interest = game.type;
+    //     console.log(interest);
+    //     addInterestToPlayer(userName, interest);
+    //   }
+    // }))
 
 };
 
