@@ -21,11 +21,11 @@ class GameList extends React.Component {
   componentDidMount() {
     axios.get('/games')
       .then(response => {
-        console.log(response)
+        // console.log(response)
         // let values = response.data;
   
         this.setState({ dbGames: response.data })
-        console.log(this.state)
+        // console.log(this.state)
       })
   }
 

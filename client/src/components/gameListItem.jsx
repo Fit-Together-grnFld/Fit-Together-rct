@@ -1,14 +1,13 @@
 import React from 'react';
-import GoogleImg from './googleImg.jsx';
 
 const GameListItem = (props) => (
 		<div>
 					<tr>
 						<td>
-							<GoogleImg />
+							{/* {props.game.image} */}
 						</td>
 						<td>
-							{/* {props.game.name} */}
+							{/* {props.game.name}  */}
 						</td>
 						<td>
 							{/* {props.game.description} */}
