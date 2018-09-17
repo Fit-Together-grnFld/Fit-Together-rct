@@ -67,16 +67,10 @@ app.post('/joinGame', (req, res) => {
   // console.log(req)
   let name = req.body.params.name;
   let game = req.body.params.game;
-  // console.log(name)
-  // console.log(game)
-  // db.getPlayerFromGame(name, game, (player) => {
-  //   if (player) {
-  //     res.send('You are already signed up for this event')
-  //   } else {
-      db.addPlayerToGame(name, gameName);
-      res.send('You have expressed interest')
-  //   }
-  // })
+  console.log(name)
+  console.log(game)
+  db.addPlayerToGame(name, game);
+  res.send('You have expressed interest')
 })
 
 //LOGIN
