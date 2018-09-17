@@ -136,11 +136,14 @@ app.post('/image', (req, res) => {
 
   let longitude = req.body.longitude
   let latitude = req.body.latitude
-  axios.get(`https://maps.googleapis.com/maps/api/streetview?size=600x300&location=${longitude},${latitude}&key=AIzaSyBo4hFFKUrEByZ5KO2TqiFHyj6uGDrFcxI&signature=fDPPmLg1DIe-gYYILtKcmFR7Iig=`)
+  axios.get(`https://maps.googleapis.com/maps/api/streetview?size=600x300&location=${longitude},${latitude}&key=AIzaSyBo4hFFKUrEByZ5KO2TqiFHyj6uGDrFcxI`)
     .then(function (response) {
+      let url = response.config.url
+      // console.log(response.config.url, 'picBB');
+      // console.log()
       // handle success
-      rs.send(response);
-      console.log(response, 'picBB');
+      
+      res.send(url);
     })
     .catch(function (error) {
       // handle error
@@ -149,7 +152,6 @@ app.post('/image', (req, res) => {
     .then(function () {
       // always executed
     });
-  res.send('boom')
 })
 
 //SEND A MESSAGE

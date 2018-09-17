@@ -53,8 +53,11 @@ class UserEventItem extends React.Component {
         longitude: long,
         latitude: lat
       }
-    }).then(function () {
+    }).then( (image) => {
+      console.log(image);
+      this.setState({ADDpic: image.data})
       // always executed
+      console.log(this.state)
     });
     // axios.post('/image', {
       

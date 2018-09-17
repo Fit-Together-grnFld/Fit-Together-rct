@@ -21,7 +21,7 @@ class UserEventList extends React.Component {
   
   
   componentDidMount(){
-    this.state.user[7].forEach(game => {
+    this.state.user.events.forEach(game => {
       axios.get('/game', {
         params: {
           gameName: game
